@@ -31,9 +31,7 @@
   - инстансы ВМ
   - зона и записи DNS
 
-![Yandex.Cloud](/images/hw09-yandex-cloud.png)
-
-Подробнее по инфраструктурной части см. https://github.com/otus-devops-2023-05/voitenkov_infra/blob/cloud-bastion/infrastructure/README.md
+Подробнее по инфраструктурной части см. [infrastructure/README.md](infrastructure/README.md)
 
 ### Подключение к виртуальной машине с использованием приватного ключа
 
@@ -75,13 +73,13 @@ someinternalhost
 ### Подключение к локальной машине в удаленной приватной сети через bastion-host
 
 Варианты с одной командой:
-1. Через сквозной терминал:
+1. Через сквозной терминал:  
 `$ ssh -i ~/.ssh/id_rsa -A -t appuser@158.160.113.188 \ ssh 192.168.10.5`
 
-2. Подключение с использованием bastion-host'а как Proxy:
+3. Подключение с использованием bastion-host'а как Proxy:  
 `$ ssh -i ~/.ssh/id_rsa 192.168.10.5 -o "proxycommand ssh -W %h:%p appuser@158.160.113.188"`
 
-3. Подключение через jump-host:
+5. Подключение через jump-host:  
 `$ ssh -i ~/.ssh/id_rsa -A -J appuser@158.160.113.188 appuser@192.168.10.5`
 
 ### Дополнительное задание
@@ -113,14 +111,14 @@ someinternalhost
 
 1. Установка VPN-сервера pritunl и базы mongodb
 
-Запускаем скрипт VPN/setupvpn.sh
+Запускаем скрипт [VPN/setupvpn.sh](VPN/setupvpn.sh)
 
 2. Запуск настройки через web-интерфейс [https://bastion.voytenkov.ru/setup](https://bastion.voytenkov.ru/setup)
 
 3. Добавление User'а, организации и сервера.
 
 4. При прикреплении User'a к серверу сгенерируется конфигурация для подключения через OpenVPN, доступная для скачивания.
-См. VPN/cloud-bastion.ovpn
+См. [VPN/cloud-bastion.ovpn](VPN/cloud-bastion.ovpn)
 
 5. Устанавливаем OpenVPN клиента, импортируем конфигурацию и подключаемся.
 
