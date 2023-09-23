@@ -26,7 +26,7 @@
 
 Подробнее по инфраструктурной части см. [infrastructure/README.md](infrastructure/README.md)
 
-<a name="hw4"></a>
+<a name="hw3"></a>
 # Выполнено ДЗ № 3 - Основные сервисы Yandex Cloud
 
  - [x] Основное ДЗ
@@ -141,7 +141,7 @@ bastion_IP = 158.160.113.188
 someinternalhost_IP = 192.168.10.5
 ```
 
-<a name="hw3"></a>
+<a name="hw4"></a>
 # Выполнено ДЗ № 4 - Знакомство с облачной инфраструктурой
 
  - [x] Основное ДЗ
