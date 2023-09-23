@@ -27,7 +27,7 @@
 Подробнее по инфраструктурной части см. [infrastructure/README.md](infrastructure/README.md)
 
 <a name="hw3"></a>
-# Выполнено ДЗ № 3 - Основные сервисы Yandex Cloud
+# Выполнено ДЗ № 3 - Знакомство с облачной инфраструктурой
 
  - [x] Основное ДЗ
  - [x] Дополнительное задание (ssh someinternalhost и alias someinternalhost)
@@ -142,7 +142,7 @@ someinternalhost_IP = 192.168.10.5
 ```
 
 <a name="hw4"></a>
-# Выполнено ДЗ № 4 - Знакомство с облачной инфраструктурой
+# Выполнено ДЗ № 4 - Основные сервисы Yandex Cloud
 
  - [x] Основное ДЗ
  - [x] Дополнительное задание (startup script)
