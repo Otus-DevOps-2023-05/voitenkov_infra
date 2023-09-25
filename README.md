@@ -4,7 +4,8 @@
 <a name="top"></a>  
 1. [Подготовка инфраструктуры](#infra)  
 2. [ДЗ № 3 - Знакомство с облачной инфраструктурой](#hw3)  
-3. [ДЗ № 4 - Основные сервисы Yandex Cloud](#hw4)  
+3. [ДЗ № 4 - Основные сервисы Yandex Cloud](#hw4)
+4. [ДЗ № 5 - Модели управления инфраструктурой. Подготовка образов с помощью Packer](#hw5)  
 ---
 <a name="infra"></a>
 ### Подготовка инфраструктуры
@@ -159,13 +160,46 @@ cм. [startup script.sh](startup_script.sh).
 
 ## Как запустить проект:
 
-terraform apply
+`terraform apply`
 
 ## Как проверить работоспособность:
 ```
 testapp_IP = 158.160.51.150
 testapp_port = 9292
 ```
+
+<a name="hw5"></a>
+# Выполнено ДЗ № 5 - Модели управления инфраструктурой. Подготовка образов с помощью Packer
+
+ - [x] Основное ДЗ
+ - [x] ⭐ Построение bake-образа
+ - [x] ⭐ Автоматизация создания ВМ
+
+## В процессе сделано:
+
+1. Создание файла-шаблона Packer. Использую IAM-key для service account Terraform, так как он имеет права на фолдер.
+2. Сборка образа:  
+   `packer build ./ubuntu16.json`
+3. Проверка образа - создание ВМ. Использовал Terraform, прописав вместо образа Ubuntu наш собранный Packer'ом образ. Приложение доступно через веб.
+4. Параметризация образа и сборка нового образа на базе образа, собранного на шаге 2:  
+   `packer build -var-file=variables.json ./ubuntu16var.json`
+
+ ## ⭐ Построение bake-образа
+
+ cм. [packer/immutable.json](packer/immutable.json)  
+ Запускаем:  
+ `packer build -var-file=variables.json ./immutable.json`
+ 
+## ⭐ Автоматизация создания ВМ
+
+cм. [config-scripts/create-reddit-vm.sh](config-scripts/create-reddit-vm.sh)  
+Но я использовал Terraform.
+
+## Как запустить проект:
+
+`terraform apply`
+
+## Как проверить работоспособность:
 
 ## PR checklist:
  - [x] Выставлен label с темой домашнего задания
