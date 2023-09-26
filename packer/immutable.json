@@ -14,6 +14,11 @@
     ],
     "provisioners": [
         {
+            "type": "file",
+            "source": "files/reddit.service",
+            "destination": "/tmp/reddit.service"
+          },
+        {
             "type": "shell",
             "script": "scripts/install_ruby.sh",
             "execute_command": "sudo {{.Path}}"

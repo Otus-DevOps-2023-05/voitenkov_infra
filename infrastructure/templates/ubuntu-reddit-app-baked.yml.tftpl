@@ -1,0 +1,11 @@
+#cloud-config
+
+users:
+  - default
+  - name: appuser
+    primary_group: appuser
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ${ssh_public_key}

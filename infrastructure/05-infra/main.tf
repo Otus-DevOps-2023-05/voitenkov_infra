@@ -83,9 +83,9 @@ module "reddit-app-instance" {
     yandex_vpc_security_group.sg-otus-devops-infra-instance-linux.id,
     yandex_vpc_security_group.sg-otus-devops-infra-instance-testapp.id,
   ]
-  instance_user_data_file     = "ubuntu-reddit-app-packer"
+  instance_user_data_file     = "ubuntu-reddit-app-baked"
   instance_serial_port_enable = 1
-  instance_image_id           = "fd8nm08d0bl7msdvd4a7"
+  instance_image_id           = "fd85h99uh6sdg7gck9cg"
   instance_disk_size          = 10
 
   depends_on = [
