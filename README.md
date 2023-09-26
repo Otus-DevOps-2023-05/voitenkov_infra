@@ -187,6 +187,7 @@ testapp_port = 9292
  ## ⭐ Построение bake-образа
 
  cм. [packer/immutable.json](packer/immutable.json)  
+ Создаем скриптом службу, для копирования необходимых для службы файлов используется File provisioner.
  Запускаем:  
  `packer build -var-file=variables.json ./immutable.json`
  
