@@ -190,6 +190,24 @@ testapp_port = 9292
  Создаем скриптом службу, для копирования необходимых для службы файлов используется File provisioner.
  Запускаем:  
  `packer build -var-file=variables.json ./immutable.json`
+
+ Проверяем:
+```shell
+appuser@reddit-app:~$ sudo systemctl status reddit
+● reddit.service - Reddit App Service
+   Loaded: loaded (/etc/systemd/system/reddit.service; enabled; vendor preset: enabled)
+   Active: active (running) since Tue 2023-09-26 13:20:21 UTC; 4min 32s ago
+ Main PID: 658 (ruby2.3)
+   CGroup: /system.slice/reddit.service
+           └─658 puma 3.10.0 (tcp://0.0.0.0:9292) [reddit
+
+Sep 26 13:20:30 reddit-app puma[658]: D, [2023-09-26T13:20:30.355917 #658] DEBUG -- : MONGODB | Server description for 127.0.0.1:27017 changed from 'unkn
+Sep 26 13:20:30 reddit-app puma[658]: D, [2023-09-26T13:20:30.356031 #658] DEBUG -- : MONGODB | There was a change in the members of the 'single' topolog
+Sep 26 13:21:15 reddit-app puma[658]: D, [2023-09-26T13:21:15.986139 #658] DEBUG -- : MONGODB | 127.0.0.1:27017 | user_posts.find | STARTED | {"find"=>"p
+Sep 26 13:21:15 reddit-app puma[658]: D, [2023-09-26T13:21:15.987295 #658] DEBUG -- : MONGODB | 127.0.0.1:27017 | user_posts.find | SUCCEEDED | 0.0010156
+Sep 26 13:21:16 reddit-app puma[658]: 95.55.223.43 - - [26/Sep/2023:13:21:16 +0000] "GET / HTTP/1.1" 200 1861 0.3093
+Sep 26 13:21:16 reddit-app puma[658]: 95.55.223.43 - - [26/Sep/2023:13:21:16 +0000] "GET /favicon.ico HTTP/1.1" 404 475 0.0013
+```
  
 ## ⭐ Автоматизация создания ВМ
 
