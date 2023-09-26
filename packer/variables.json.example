@@ -1,8 +1,8 @@
 {
-    "service_account_key_file": "path to your key.json",
-    "folder_id": "your_folder_id",
-    "source_image_id": "your_source_image_id",
-    "source_image_family": "your_source_image_family",
-    "app_name": "your_app_name",
-    "ssh_username": "your_ssh_user_name"
+  "service_account_key_file": "files/key.json",
+  "folder_id": "b1xxxxxxxxxxxxxxx1r",
+  "source_image_id": "fdxxxxxxxxxxxxxx4a7",
+  "source_image_family": "ubuntu-1604-lts",
+  "app_name": "reddit",
+  "ssh_username": "ubuntu"
   }
