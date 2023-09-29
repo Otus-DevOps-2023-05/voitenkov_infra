@@ -230,7 +230,11 @@ cм. [config-scripts/create-reddit-vm.sh](config-scripts/create-reddit-vm.sh)
 ## В процессе сделано:
 
 1. Настроен Terraform проект.
-2. Задеплоены инстанс ВМ:
+2. Изучен новые для меня команды:
+   - terraform fmt
+   - terraform refresh
+   - terraform taint  
+4. Задеплоены инстанс ВМ:
    - input variables (параметризация)
    - output variables
    - настроен remote-exec provisioner, приложение деплоится при развертывании инстанса.
