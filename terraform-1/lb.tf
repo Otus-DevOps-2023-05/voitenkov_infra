@@ -1,5 +1,5 @@
 resource "yandex_lb_network_load_balancer" "app-lb" {
-  name = "reddit-app-lb"
+  name                = "reddit-app-lb"
   deletion_protection = "false"
   listener {
     name        = "reddit-app-listener"
@@ -13,14 +13,14 @@ resource "yandex_lb_network_load_balancer" "app-lb" {
   attached_target_group {
     target_group_id = yandex_lb_target_group.app-target-group.id
     healthcheck {
-      name = "http-healthcheck"
+      name                = "http-healthcheck"
       interval            = 2
       timeout             = 1
       unhealthy_threshold = 2
       healthy_threshold   = 2
       http_options {
-        port                = 9292
-        path                = "/"
+        port = 9292
+        path = "/"
       }
     }
   }
@@ -30,7 +30,7 @@ resource "yandex_lb_network_load_balancer" "app-lb" {
 }
 
 resource "yandex_lb_target_group" "app-target-group" {
-  name      = "reddit-app-target-group"
+  name = "reddit-app-target-group"
 
   dynamic "target" {
     for_each = yandex_compute_instance.app
