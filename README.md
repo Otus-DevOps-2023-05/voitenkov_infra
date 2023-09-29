@@ -247,7 +247,7 @@ cм. [config-scripts/create-reddit-vm.sh](config-scripts/create-reddit-vm.sh)
    - цикл for
    - self
    - dynamic block
-2. Задеплоены 2 инстанса в целевой группе и Network Load Balancer  cм. [terraform-1/lb.tf](terraform-1/lb.tf)  
+2. Задеплоены 2 инстанса в целевой группе и Network Load Balancer  cм. [terraform/lb.tf](terraform/lb.tf)  
 3. Проверена работа балансировки отключением службы на одном из инстансов: приложение доступно с другого инстанса.
 
 **Вопрос**: какие проблемы вы видите в такой конфигурации приложения?  
