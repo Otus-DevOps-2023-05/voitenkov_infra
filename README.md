@@ -320,7 +320,7 @@ reddit-app | SUCCESS => {
     "ping": "pong"
 }
 ```
-Но тесты сваливаются, так как там нет go, gorun и зависимостей, поэтому для тестов пишем скрипт на Python [ansible/dynamic.py].
+Но тесты сваливаются, так как там нет go, gorun и зависимостей, поэтому для тестов пишем скрипт на Python [ansible/dynamic.py](ansible/dynamic.py).
 
 P.S. По отличиям схем JSON Static и Dynamic Inventory:  
 Static:  
