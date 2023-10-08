@@ -289,7 +289,7 @@ cм. [config-scripts/create-reddit-vm.sh](config-scripts/create-reddit-vm.sh)
 
 ## Как проверить работоспособность:
 
-<a name="hw7"></a>
+<a name="hw8"></a>
 # Выполнено ДЗ № 8 - Управление конфигурацией. Знакомство с Ansible
 
  - [x] Основное ДЗ
