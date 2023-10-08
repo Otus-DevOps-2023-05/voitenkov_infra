@@ -1,4 +1,11 @@
-{
+#!/usr/bin/env python3
+
+import json
+
+# Add code to generate dynamic inventory here
+
+# Below is the static example
+inventory = {
     "_meta": {
       "hostvars": {
         "reddit-app": {
@@ -26,3 +33,5 @@
       "hosts": []
     }
 }
+
+print(json.dumps(inventory))
