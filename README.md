@@ -302,7 +302,7 @@ cм. [config-scripts/create-reddit-vm.sh](config-scripts/create-reddit-vm.sh)
 ### Задание со ⭐ Dynamic Inventory
 
 Мы делаем имитатор скрипта Dynamic Inventory, писать полноценный скрипт задачи не было. Можно было сделать на Python или Bash, но мы не ищем легких путей. Делаем скрипт на... Go :) [ansible/dynamic.go](ansible/dynamic.go)
-Запускаем, работает:
+Запускаем, локально работает:
 ```shell
 $ ansible all -m ping
 reddit-db | SUCCESS => {
@@ -320,6 +320,8 @@ reddit-app | SUCCESS => {
     "ping": "pong"
 }
 ```
+Но тесты сваливаются, так как там нет go, gorun и зависимостей, поэтому для тестов пишем скрипт на Python [ansible/dynamic.py].
+
 P.S. По отличиям схем JSON Static и Dynamic Inventory:  
 Static:  
 - структура: группа-хост-переменные
