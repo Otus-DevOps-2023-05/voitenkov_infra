@@ -376,7 +376,7 @@ Dynamic:
 # Выполнено ДЗ № 9 - Продолжение знакомства с Ansible templates, handlers, dynamic inventory, vault, tags
 
  - [x] Основное ДЗ
- - [ ] Задание со ⭐ Dynamic Inventory
+ - [x] Задание со ⭐ Dynamic Inventory
 
 ## В процессе сделано:
 
