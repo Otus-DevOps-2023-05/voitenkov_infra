@@ -385,6 +385,35 @@ Dynamic:
 
 ### Задание со ⭐ Dynamic Inventory
 
+Установил плагин yc_compute из предложенного в методичке репозитория, настроил конфигурацию плагина, включая keyed_groups. Все отлично, все работает, правда пришлось пошаманить:
+```shell
+$ ansible-inventory --graph
+@all:
+  |--@ungrouped:
+  |--@app:
+  |  |--fhm8rvl0jok1tj95tauo.auto.internal
+  |--@b1gcgnan15o6dc5q7d1r:
+  |  |--fhm8rvl0jok1tj95tauo.auto.internal
+  |  |--fhmdmaogjlgnh1kgku1g.auto.internal
+  |--@db:
+  |  |--fhmdmaogjlgnh1kgku1g.auto.internal
+
+$ ansible all -m ping
+fhmdmaogjlgnh1kgku1g.auto.internal | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+fhm8rvl0jok1tj95tauo.auto.internal | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+```
 
 
 ## Как запустить проект:
