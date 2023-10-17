@@ -26,6 +26,9 @@ override.tf.json
 *_override.tf
 *_override.tf.json
 
+# Ansible community roles
+jdauphant.nginx
+
 # Include override files you do wish to add to version control using negated pattern
 # !example_override.tf
 
@@ -39,6 +42,7 @@ terraform.rc
 # keys
 **/.secrets/*
 secrets.*
+vault.key
 
 # for compatibility with old OTUS tests (terraform v0.12.x)
 versions.tf
