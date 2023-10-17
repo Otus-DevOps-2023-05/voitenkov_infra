@@ -1,0 +1,27 @@
+---
+- name: Configure MongoDB
+  hosts: db
+  become: true
+  vars:
+    mongo_bind_ip: 0.0.0.0
+  tasks:
+    - name: Change mongo config file
+      template:
+        src: templates/mongod.conf.j2
+        dest: /etc/mongod.conf
+        mode: 0644
+      notify:
+      - reload systemd
+      - restart mongod
+
+  handlers:
+  - name: reload systemd
+    become: true
+    systemd:
+      daemon_reload: yes
+
+  - name: restart mongod
+    service:
+      name: mongod
+      enabled: true
+      state: restarted

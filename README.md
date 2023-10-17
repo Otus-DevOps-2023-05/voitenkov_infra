@@ -8,7 +8,8 @@
 4. [ДЗ № 5 - Модели управления инфраструктурой. Подготовка образов с помощью Packer](#hw5)
 5. [ДЗ № 6 - Знакомство с Terraform](#hw6)
 6. [ДЗ № 7 - Принципы организации инфраструктурного кода и работа над инфраструктурой в команде на примере Terraform](#hw7)
-7. [ДЗ № 8 - Управление конфигурацией. Знакомство с Ansible](#hw8)  
+7. [ДЗ № 8 - Управление конфигурацией. Знакомство с Ansible](#hw8)
+8. [ДЗ № 9 - Продолжение знакомства с Ansible templates, handlers, dynamic inventory, vault, tags](#hw9)  
 ---
 <a name="infra"></a>
 ### Подготовка инфраструктуры
@@ -364,6 +365,56 @@ Dynamic:
 - в блоке группа-хост нет переменных
 - добавлена обязательная группа **ungrouped**, куда попадают хосты, не попавшие ни в одну группу
 - описание групп сложнее, добавлена группа **all** и промежуточный уровень **children** для подгрупп, подгруппы с хостами идут отдельными списками
+
+## Как запустить проект:
+
+`terraform apply`
+
+## Как проверить работоспособность:
+
+<a name="hw9"></a>
+# Выполнено ДЗ № 9 - Продолжение знакомства с Ansible templates, handlers, dynamic inventory, vault, tags
+
+ - [x] Основное ДЗ
+ - [x] Задание со ⭐ Dynamic Inventory
+
+## В процессе сделано:
+
+- Протестировал все предложенные варианты конфигурирования инфраструктуры с использованием Ansible.
+- Протестировал provision в Packer с использованием плейбуков Ansible.
+
+### Задание со ⭐ Dynamic Inventory
+
+Установил плагин yc_compute из предложенного в методичке репозитория, настроил конфигурацию плагина, включая keyed_groups. Все отлично, все работает, правда пришлось пошаманить:
+```shell
+$ ansible-inventory --graph
+@all:
+  |--@ungrouped:
+  |--@app:
+  |  |--fhm8rvl0jok1tj95tauo.auto.internal
+  |--@b1gcgnan15o6dc5q7d1r:
+  |  |--fhm8rvl0jok1tj95tauo.auto.internal
+  |  |--fhmdmaogjlgnh1kgku1g.auto.internal
+  |--@db:
+  |  |--fhmdmaogjlgnh1kgku1g.auto.internal
+
+$ ansible all -m ping
+fhmdmaogjlgnh1kgku1g.auto.internal | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+fhm8rvl0jok1tj95tauo.auto.internal | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+```
+
 
 ## Как запустить проект:
 

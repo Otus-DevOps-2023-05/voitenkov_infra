@@ -13,5 +13,5 @@ module "app" {
   image_id         = var.app_disk_image
   subnet_id        = yandex_vpc_subnet.app-subnet.id
   mongo_ip         = module.db.internal_ip_address_db
-  depends_on       = [module.db]
+#  depends_on       = [module.db]
 }

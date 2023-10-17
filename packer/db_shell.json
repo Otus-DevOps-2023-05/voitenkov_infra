@@ -5,8 +5,8 @@
             "service_account_key_file": "{{user `service_account_key_file`}}",
             "folder_id": "{{user `folder_id`}}",
             "source_image_family": "{{user `source_image_family`}}",
-            "image_name": "{{user `app_name`}}-app-base-{{timestamp}}",
-            "image_family": "{{user `app_name`}}-app-base",
+            "image_name": "{{user `app_name`}}-db-base-{{timestamp}}",
+            "image_family": "{{user `app_name`}}-db-base",
             "ssh_username": "{{user `ssh_username`}}",
             "platform_id": "standard-v3",
             "use_ipv4_nat": true
@@ -14,11 +14,9 @@
     ],
     "provisioners": [
         {
-        "type": "ansible",
-        "user": "ubuntu",
-        "playbook_file": "ansible/packer_app.yml",
-        "ansible_env_vars": [ "ANSIBLE_HOST_KEY_CHECKING=False", "ANSIBLE_PRIVATE_KEY_FILE=~/.ssh/yc" ],
-        "extra_arguments": [ "-vvvv" ]
+            "type": "shell",
+            "script": "scripts/install_mongodb.sh",
+            "execute_command": "sudo {{.Path}}"
         }
     ]
 }

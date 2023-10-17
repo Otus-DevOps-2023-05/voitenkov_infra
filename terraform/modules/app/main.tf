@@ -25,20 +25,4 @@ resource "yandex_compute_instance" "app" {
     ssh-keys = "ubuntu:${file("${var.public_key_path}")}"
   }
 
-  connection {
-    type        = "ssh"
-    host        = self.network_interface.0.nat_ip_address
-    user        = "ubuntu"
-    agent       = false
-    private_key = file("${var.private_key_path}")
-  }
-
-  provisioner "file" {
-    content     = templatefile("${path.module}/puma.service", { MONGO_IP = var.mongo_ip })
-    destination = "/tmp/puma.service"
-  }
-
-  provisioner "remote-exec" {
-    script = "${path.module}/deploy.sh"
-  }
 }
