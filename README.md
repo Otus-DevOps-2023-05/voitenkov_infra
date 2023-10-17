@@ -437,7 +437,7 @@ fhm8rvl0jok1tj95tauo.auto.internal | SUCCESS => {
 
 ### Задание с ⭐⭐ Настройка ~Travis CI~ GitHub Actions
 
-Так как регистрация в Travis CI в данный момент недоступна, изучаем аналогичный функционал GutHub Actions.
+Так как регистрация в Travis CI в данный момент недоступна, изучаем аналогичный функционал GutHub Actions. Запускаем на своем раннере, terraform не может подключиться к зеркалу, ansible-lint выводит ошибку `an AnsibleCollectionFinder has not been installed in this process`. Можно было бы собрать свой docker-образ, но не стал уже. Главное, что разобрался как работать с GitHub Actions. Выполнял на зеркале репозитория, пример конфига для Actions в [my_tests.yaml](my_tests.yaml).
 
 ## Как запустить проект:
 
