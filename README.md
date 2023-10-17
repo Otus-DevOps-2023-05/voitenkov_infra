@@ -426,7 +426,7 @@ fhm8rvl0jok1tj95tauo.auto.internal | SUCCESS => {
 # Выполнено ДЗ № 10 - Ansible роли, управление настройками нескольких окружений и best practices
 
  - [x] Основное ДЗ
- - [x] Задание с ⭐⭐ Настройка ~Travis CI~ GitHub Actions
+ - [ ] Задание с ⭐⭐ Настройка ~Travis CI~ GitHub Actions
 
 ## В процессе сделано:
 
