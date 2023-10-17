@@ -1,3 +1,4 @@
 *.retry
 key.json
 vault.key
+jdauphantnginx/*
