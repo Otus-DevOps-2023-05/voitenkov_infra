@@ -1,4 +1,4 @@
 *.retry
 key.json
 vault.key
-roles/jdauphant.nginx/*
+roles/jdauphant.nginx
