@@ -45,3 +45,4 @@ versions.tf
 
 ## ansible
 **/roles/jdauphantnginx/*
+jdauphant.nginx
