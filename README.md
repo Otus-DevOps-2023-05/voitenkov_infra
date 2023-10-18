@@ -430,10 +430,55 @@ fhm8rvl0jok1tj95tauo.auto.internal | SUCCESS => {
 
 ## В процессе сделано:
 
-- Перенёс созданные плейбуки в раздельные роли
-- Описал Stage и Prod окружения
-- Использовал коммьюнити роль **nginx**
-- Задействовал Ansible Vault для шифрования конфигураций, содержащих чувствительные данные
+1. Перенёс созданные плейбуки в раздельные роли
+2. Описал Stage и Prod окружения
+3. Использовал коммьюнити роль **nginx**:  
+Сайт работает по 80 порту через Nginx:
+![Reddit-Nginx](/images/hw10-reddit.png)  
+
+
+5. Задействовал Ansible Vault для шифрования конфигураций, содержащих чувствительные данные
+
+Результаты по плейбуку users:
+```shell
+ubuntu@fhmdmaogjlgnh1kgku1g:~$ sudo cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+...
+ubuntu:x:1000:1001:Ubuntu:/home/ubuntu:/bin/bash
+mongodb:x:108:65534::/home/mongodb:/bin/false
+admin:x:1001:1002::/home/admin:
+qauser:x:1002:1003::/home/qauser:
+
+$ ansible-playbook playbooks/site.yml --check
+[WARNING]: While constructing a mapping from /home/andy/git/otus/devops/ansible-3/roles/jdauphant.nginx/tasks/configuration.yml, line 62, column 3, found a duplicate dict key (when). Using last defined value
+only.
+
+PLAY [Configure MongoDB] ****************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************************************************************************
+ok: [fhmdmaogjlgnh1kgku1g.auto.internal]
+
+TASK [db : Show info about the env this host belongs to] ********************************************************************************************************************************************************
+ok: [fhmdmaogjlgnh1kgku1g.auto.internal] => {
+    "msg": "This host is in stage environment!!!"
+}
+
+...
+
+TASK [Gathering Facts] ******************************************************************************************************************************************************************************************
+ok: [fhm8rvl0jok1tj95tauo.auto.internal]
+ok: [fhmdmaogjlgnh1kgku1g.auto.internal]
+
+TASK [create users] *********************************************************************************************************************************************************************************************
+changed: [fhm8rvl0jok1tj95tauo.auto.internal] => (item={'key': 'admin', 'value': {'password': 'qwerty123', 'groups': 'sudo'}})
+changed: [fhmdmaogjlgnh1kgku1g.auto.internal] => (item={'key': 'admin', 'value': {'password': 'qwerty123', 'groups': 'sudo'}})
+changed: [fhm8rvl0jok1tj95tauo.auto.internal] => (item={'key': 'qauser', 'value': {'password': 'test123'}})
+changed: [fhmdmaogjlgnh1kgku1g.auto.internal] => (item={'key': 'qauser', 'value': {'password': 'test123'}})
+
+PLAY RECAP ******************************************************************************************************************************************************************************************************
+fhm8rvl0jok1tj95tauo.auto.internal : ok=23   changed=1    unreachable=0    failed=0    skipped=17   rescued=0    ignored=0
+fhmdmaogjlgnh1kgku1g.auto.internal : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
 
 ### Задание с ⭐⭐ Настройка ~Travis CI~ GitHub Actions
 
