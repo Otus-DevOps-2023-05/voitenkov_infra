@@ -432,21 +432,16 @@ fhm8rvl0jok1tj95tauo.auto.internal | SUCCESS => {
 
 1. Перенёс созданные плейбуки в раздельные роли
 2. Описал Stage и Prod окружения
-3. Использовал коммьюнити роль **nginx**:  
+3. Использовал коммьюнити роль **nginx**:
+  
 Сайт работает по 80 порту через Nginx:
 ![Reddit-Nginx](/images/hw10-reddit.png)  
 
-
-5. Задействовал Ansible Vault для шифрования конфигураций, содержащих чувствительные данные
+4. Задействовал Ansible Vault для шифрования конфигураций, содержащих чувствительные данные
 
 Результаты по плейбуку users:
 ```shell
-ubuntu@fhmdmaogjlgnh1kgku1g:~$ sudo cat /etc/passwd
-root:x:0:0:root:/root:/bin/bash
-...
-ubuntu:x:1000:1001:Ubuntu:/home/ubuntu:/bin/bash
-mongodb:x:108:65534::/home/mongodb:/bin/false
-admin:x:1001:1002::/home/admin:
+ubuntu@fhmdmaogjlgnh1kgku1g:~$ sudo cat /etc/passwd | grep qauser
 qauser:x:1002:1003::/home/qauser:
 
 $ ansible-playbook playbooks/site.yml --check
@@ -482,7 +477,10 @@ fhmdmaogjlgnh1kgku1g.auto.internal : ok=5    changed=1    unreachable=0    faile
 
 ### Задание с ⭐⭐ Настройка ~Travis CI~ GitHub Actions
 
-Так как регистрация в Travis CI в данный момент недоступна, изучаем аналогичный функционал GutHub Actions. Запускаем на своем раннере, terraform не может подключиться к зеркалу, ansible-lint выводит ошибку `an AnsibleCollectionFinder has not been installed in this process`. Можно было бы собрать свой docker-образ, но не стал уже. Главное, что разобрался как работать с GitHub Actions. Выполнял на зеркале репозитория, пример конфига для Actions в [my_tests.yaml](my_tests.yaml).
+Так как регистрация в Travis CI в данный момент недоступна, изучаем аналогичный функционал GutHub Actions.  
+Запускаем на своем раннере, terraform не может подключиться к зеркалу, ansible-lint выводит ошибку `an AnsibleCollectionFinder has not been installed in this process`.  
+Можно было бы собрать свой docker-образ, но не стал уже. Главное, что разобрался как работать с GitHub Actions.  
+Выполнял на зеркале репозитория, пример конфига для Actions в [my_tests.yaml](my_tests.yaml).
 
 ## Как запустить проект:
 
