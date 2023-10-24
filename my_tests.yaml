@@ -1,0 +1,24 @@
+name: Run tests for OTUS homework
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  repo_validate:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+      - name: Packer validate
+        run: packer validate -var-file=packer/variables.json.example packer/ubuntu16.json
+      - name: Terraform validate stage
+        run: cd terraform/stage && terraform init && terraform validate && tflint && cd ../..
+      - name: Terraform validate prod
+        run: cd terraform/prod && terraform init && terraform validate && tflint && cd ../..
+      - name: Ansible validation
+        run: ansible-lint ansible-3/playbook

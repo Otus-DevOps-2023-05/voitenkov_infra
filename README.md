@@ -9,7 +9,8 @@
 5. [ДЗ № 6 - Знакомство с Terraform](#hw6)
 6. [ДЗ № 7 - Принципы организации инфраструктурного кода и работа над инфраструктурой в команде на примере Terraform](#hw7)
 7. [ДЗ № 8 - Управление конфигурацией. Знакомство с Ansible](#hw8)
-8. [ДЗ № 9 - Продолжение знакомства с Ansible templates, handlers, dynamic inventory, vault, tags](#hw9)  
+8. [ДЗ № 9 - Продолжение знакомства с Ansible templates, handlers, dynamic inventory, vault, tags](#hw9)
+9. [ДЗ №10 - Ansible роли, управление настройками нескольких окружений и best practices](#hw10)  
 ---
 <a name="infra"></a>
 ### Подготовка инфраструктуры
@@ -415,10 +416,73 @@ fhm8rvl0jok1tj95tauo.auto.internal | SUCCESS => {
 }
 ```
 
-
 ## Как запустить проект:
 
 `terraform apply`
+
+## Как проверить работоспособность:
+
+<a name="hw10"></a>
+# Выполнено ДЗ № 10 - Ansible роли, управление настройками нескольких окружений и best practices
+
+ - [x] Основное ДЗ
+ - [ ] Задание с ⭐⭐ Настройка ~Travis CI~ GitHub Actions
+
+## В процессе сделано:
+
+1. Перенёс созданные плейбуки в раздельные роли
+2. Описал Stage и Prod окружения
+3. Использовал коммьюнити роль **nginx**:
+  
+Сайт работает по 80 порту через Nginx:
+![Reddit-Nginx](/images/hw10-reddit.png)  
+
+4. Задействовал Ansible Vault для шифрования конфигураций, содержащих чувствительные данные
+
+Результаты по плейбуку users:
+```shell
+ubuntu@fhmdmaogjlgnh1kgku1g:~$ sudo cat /etc/passwd | grep qauser
+qauser:x:1002:1003::/home/qauser:
+
+$ ansible-playbook playbooks/site.yml --check
+[WARNING]: While constructing a mapping from /home/andy/git/otus/devops/ansible-3/roles/jdauphant.nginx/tasks/configuration.yml, line 62, column 3, found a duplicate dict key (when). Using last defined value
+only.
+
+PLAY [Configure MongoDB] ****************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************************************************************************
+ok: [fhmdmaogjlgnh1kgku1g.auto.internal]
+
+TASK [db : Show info about the env this host belongs to] ********************************************************************************************************************************************************
+ok: [fhmdmaogjlgnh1kgku1g.auto.internal] => {
+    "msg": "This host is in stage environment!!!"
+}
+
+...
+
+TASK [Gathering Facts] ******************************************************************************************************************************************************************************************
+ok: [fhm8rvl0jok1tj95tauo.auto.internal]
+ok: [fhmdmaogjlgnh1kgku1g.auto.internal]
+
+TASK [create users] *********************************************************************************************************************************************************************************************
+changed: [fhm8rvl0jok1tj95tauo.auto.internal] => (item={'key': 'admin', 'value': {'password': 'qwerty123', 'groups': 'sudo'}})
+changed: [fhmdmaogjlgnh1kgku1g.auto.internal] => (item={'key': 'admin', 'value': {'password': 'qwerty123', 'groups': 'sudo'}})
+changed: [fhm8rvl0jok1tj95tauo.auto.internal] => (item={'key': 'qauser', 'value': {'password': 'test123'}})
+changed: [fhmdmaogjlgnh1kgku1g.auto.internal] => (item={'key': 'qauser', 'value': {'password': 'test123'}})
+
+PLAY RECAP ******************************************************************************************************************************************************************************************************
+fhm8rvl0jok1tj95tauo.auto.internal : ok=23   changed=1    unreachable=0    failed=0    skipped=17   rescued=0    ignored=0
+fhmdmaogjlgnh1kgku1g.auto.internal : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+### Задание с ⭐⭐ Настройка ~Travis CI~ GitHub Actions
+
+Так как регистрация в Travis CI в данный момент недоступна, изучаем аналогичный функционал GutHub Actions.  
+Запускаем на своем раннере, terraform не может подключиться к зеркалу, ansible-lint выводит ошибку `an AnsibleCollectionFinder has not been installed in this process`.  
+Можно было бы собрать свой docker-образ, но не стал уже. Главное, что разобрался как работать с GitHub Actions.  
+Выполнял на зеркале репозитория, пример конфига для Actions в [my_tests.yaml](my_tests.yaml).
+
+## Как запустить проект:
 
 ## Как проверить работоспособность:
 
