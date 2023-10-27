@@ -18,8 +18,8 @@
             "user": "ubuntu",
             "ansible_ssh_extra_args": "-o HostkeyAlgorithms=ssh-rsa",
             "playbook_file": "ansible/packer_db.yml",
-            "ansible_env_vars": [ "ANSIBLE_HOST_KEY_CHECKING=False", "ANSIBLE_PRIVATE_KEY_FILE=~/.ssh/yc" ],
-            "extra_arguments": [ "-vvvv" ]
+            "ansible_env_vars": ["ANSIBLE_HOST_KEY_CHECKING=False","ANSIBLE_PRIVATE_KEY_FILE=~/.ssh/yc","ANSIBLE_ROLES_PATH={{ pwd }}/ansible/roles"],
+            "extra_arguments": ["--tags","app"]
         }
     ]
 }
